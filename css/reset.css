@@ -1,0 +1,61 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: inherit;
+    font-weight: inherit;
+}
+
+*::before,
+*::after {
+    /* content: ""; */
+    box-sizing: border-box;
+}
+
+ul,
+ol,
+dl {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+body {
+    line-height: 1;
+}
+
+img {
+    vertical-align: top;
+    max-width: 100%;
+    border: 0;
+}
+
+button {
+    border: none;
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+}
+
+address,
+i,
+em {
+    font-style: normal;
+}
+
+p {
+    line-height: 1.5;
+    word-break: keep-all;
+}
+
+.blind {
+    position: absolute;
+    clip: rect(0 0 0 0);
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+}

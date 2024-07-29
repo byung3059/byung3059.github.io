@@ -4,11 +4,315 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>bys_portfolio</title>
+
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/fonts.css">
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/fullpage.min.css">
+    <link rel="stylesheet" href="./css/swiper-bundle.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+
+    <script src="./js/gsap.min.js"></script>
+    <script src="./js/fullpage.min.js"></script>
+    <script src="./js/swiper-bundle.min.js"></script>
+    <script src="./js/custom.js" defer></script>
 </head>
 
 <body>
-    <h1>github test</h1>
+
+    <header class="hd on">
+        <h1 class="blind">portfolio 2024</h1>
+        <nav class="gnb"><!-- 하단 메뉴 모바일시 상단 소개 -->
+            <ul>
+                <li data-menuanchor="INTRO" class="on"><a href="#INTRO"></a></li>
+                <li><a href="#PROJECT01">PROJECT01</a></li>
+                <li><a href="#PROJECT02">PROJECT02</a></li>
+                <li><a href="#PROJECT03">PROJECT03</a></li>
+                <li><a href="#TRANNING">TRANNING</a></li>
+                <li><a href="#PROFILE">PROFILE</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="content">
+        <section class="section intro">
+
+            <div class="inner">
+                <div class="tit">
+                    <h2>The Line, The Time</h2>
+                    <p>My teacher said that if you keep the line and don't go out of the line,<br />
+                        the design is made for free. I disagree.
+                    </p>
+                </div>
+
+                <div class="cicle">
+
+                    <svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+                        <defs>
+                            <filter id="goo">
+                                <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+                                <feColorMatrix in="blur" mode="matrix"
+                                    values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -10" result="goo" />
+                                <feBlend in="SourceGraphic" in2="goo" />
+                            </filter>
+                        </defs>
+                    </svg>
+                </div>
+                <!-- <div class="neum_box">
+                        <div class="clock">
+                            <div id="center"></div>
+                            <div id="hour"></div>
+                            <div id="min"></div>
+                            <div id="sec"></div>
+                        </div>
+                    </div> -->
+
+                <div class="design">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+
+
+
+
+        </section>
+
+        <section class="section pt PROJECT01">
+            <div class="inner">
+                <div class="itm itm01">
+                    <div class="txt_box">
+                        <div class="tit">
+                            <h2>LE LABO</h2>
+                            <P>르 라보 홈페이지를<br />
+                                레이아웃에 맞춰 리디자인 하였습니다.</P>
+                        </div>
+                        <div class="pt_info">
+                            <ul>
+                                <li>TYPE
+                                    <span>반응형 웹페이지</span>
+                                </li>
+                                <li>TOOLS
+                                    <span>HTML5</span>
+                                    <span>CSS</span>
+                                    <span>jQuery</span>
+                                </li>
+                                <li>COLOR
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="pt_link">
+                            <a class="main_link" href="https://byung3059.github.io/le-labo/" target="_blank">main
+                                page</a>
+                            <a href="https://byung3059.github.io/le-labo/index02.html" target="_blank">sub
+                                page</a>
+                            <a href="https://byung3059.github.io/le-labo/index03.html" target="_blank">
+                                sub page</a>
+                            <a href="https://www.figma.com/design/gBm6bxmFcxkTm09JsmehY8/la-labo?t=n4UimH6P424cr9Ss-1"
+                                target="_blank">figma</a>
+                        </div>
+                    </div>
+                    <div class="mokup">
+                        <div class="case">
+                            <img src="./images/PC.jpg" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </section>
+        <section class="section pt PROJECT02">
+            <div class="inner">
+                <div class="itm itm02">
+                    <div class="txt_box">
+                        <div class="tit">
+                            <h2>The Palace73</h2>
+                            <P>The Palace73 홈페이지를
+                                <br />풀페이지로
+                                레이아웃에 맞춰 리디자인 하였습니다.
+                            </P>
+                        </div>
+                        <div class="pt_info">
+                            <ul>
+                                <li>TYPE
+                                    <span>반응형 웹페이지</span>
+                                </li>
+                                <li>TOOLS
+                                    <span>HTML5</span>
+                                    <span>CSS</span>
+                                    <span>jQuery</span>
+                                </li>
+                                <li>COLOR</li>
+                            </ul>
+                        </div>
+                        <div class="pt_link">
+                            <a class="main_link" href="https://byung3059.github.io/palace73/" target="_blank">main
+                                page</a>
+                            <a href="https://www.figma.com/design/ooYJ3ds3BRkeoDtOXgtVIH/the-palace73?t=n4UimH6P424cr9Ss-1"
+                                target="_blank">figma</a>
+                        </div>
+                    </div>
+                    <div class="mokup">
+                        <div class="case">
+                            <img src="./images/thepalace73.jpg" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </section>
+        <section class="section pt PROJECT03">
+            <div class="inner">
+                <div class="itm itm03">
+                    <div class="txt_box">
+                        <div class="tit">
+                            <h2>GENESIS</h2>
+                            <P>제네시스 홈페이지를<br />
+                                레이아웃에 맞춰 리디자인 하였습니다.</P>
+                        </div>
+                        <div class="pt_info">
+                            <ul>
+                                <li>TYPE
+                                    <span>반응형 웹페이지</span>
+                                </li>
+                                <li>TOOLS
+                                    <span>HTML5</span>
+                                    <span>CSS</span>
+                                    <span>jQuery</span>
+
+                                </li>
+                                <li>COLOR</li>
+                            </ul>
+                        </div>
+                        <div class="pt_link">
+                            <a class="main_link" href="https://byung3059.github.io/genesis_portfolio/"
+                                target="_blank">main
+                                page</a>
+                            <a href="" target="_blank">guide</a>
+                        </div>
+                    </div>
+                    <div class="mokup">
+                        <div class="case">
+                            <img src="./images/genesis_pc.jpg" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </section>
+
+        <section class="section tr TRANNING">
+            <div class="inner">
+                <div class="tit">
+                    <h2>TRANNING</h2>
+                </div>
+
+
+                <!-- <div class="tr_link">
+                    <div class="tr_box tr_box01">
+                        <figure>
+                            <div class="img_box">
+                                <a href=""><img src="./images/tr01.jpg" alt=""></a>
+                            </div>
+                        </figure>
+                        <div class="txt">
+                            <strong>KCC 건설</strong>
+                        </div>
+                    </div>
+                    <div class="tr_box tr_box02">
+                        <figure>
+                            <div class="img_box">
+                                <a href=""><img src="./images/tr02.jpg" alt=""></a>
+                            </div>
+                        </figure>
+                        <div class="txt">
+                            <strong>독도 체험관</strong>
+                        </div>
+                    </div>
+                    <div class="tr_box tr_box03">
+                        <figure>
+                            <div class="img_box">
+                                <a href=""><img src="./images/tr03.jpg" alt=""></a>
+                            </div>
+                        </figure>
+                        <div class="txt">
+                            <strong>대림성모병원</strong>
+                        </div>
+                    </div>
+                </div> -->
+
+            </div>
+        </section>
+        <section class="section profile PROFILE">
+            <div class="inner">
+                <div class="pro_box">
+                    <ul>
+                        <li>name
+
+                        </li>
+                        <li>tel
+
+                        </li>
+                        <li>mail
+
+                        </li>
+                        <li>github
+
+                        </li>
+                    </ul>
+
+                    <ul>
+                        <li>변영성</li>
+                        <li>010-2300-3059</li>
+                        <li>byung3059@naver.com</li>
+                        <li>https://github.com/byung3059</li>
+                    </ul>
+                </div>
+
+                <div class="copy">
+                    &copy; 2024 BYS All right Reversed.<br />
+                    해당 포트폴리오는 비상업적인 용도로 제작되었습니다.
+                </div>
+            </div>
+
+        </section>
+    </main>
+
+    <div class="cover"> <!-- 상단 메뉴 커버 -->
+        <nav class="lnb">
+            <ul>
+                <li class="on" data-menuanchor="INTRO"><a href="#INTRO" data-menuanchor="INTRO">INTRO</a></li>
+                <li><a href="#PROJECT01">PROJECT01</a></li>
+                <li><a href="#PROJECT02">PROJECT02</a></li>
+                <li><a href="#PROJECT03">PROJECT03</a></li>
+                <li><a href="#TRANNING">TRANNING</a></li>
+                <li><a href="#PROFILE">PROFILE</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="menu active"> <!-- 상단 메뉴 -->
+        <button class="btn">menu</button>
+    </div>
+
+
+    <!-- 시작 애니메이션 커버 -->
+    <!-- <div class="start_cover">
+        <span class="line"></span>
+        <span class="back01"></span>
+        <span class="back02"></span>
+    </div> -->
+
+
+
 </body>
 
 </html>

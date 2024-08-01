@@ -378,7 +378,25 @@
 
 /* 프로젝트 */
 
-.pt {}
+.pt {
+    position: relative;
+}
+
+.pt::before {
+    content: '';
+    position: absolute;
+    inset: 0 0 0 0;
+    background: rgba(0, 0, 0, 0.8);
+}
+
+
+.PROJECT01 {
+    background: url(../images/ptbg01.jpg)no-repeat center center/cover;
+}
+
+.PROJECT02 {
+    background: url(../images/ptbg02.jpg)no-repeat center center/cover;
+}
 
 .pt .inner {
     position: relative;
@@ -453,8 +471,8 @@
     display: block;
     padding: 8px 24px;
     border-radius: 4px;
-    color: var(--black-color);
-    background: #f9f9f9;
+    color: var(--white-color);
+    background: rgba(255, 255, 255, 0.1);
     text-transform: uppercase;
 }
 
@@ -473,6 +491,18 @@
     overflow: hidden;
 
     box-shadow: 0px 30px 60px -30px #000000;
+}
+
+.pt .itm01 .mokup .case {
+    background: url(../images/pt01.jpg)no-repeat top center/cover;
+}
+
+.pt .itm02 .mokup .case {
+    background: url(../images/pt02.jpg)no-repeat top center/cover;
+}
+
+.pt .itm03 .mokup .case {
+    background: url(../images/pt03.jpg)no-repeat top center/cover;
 }
 
 @media(max-width:768px) {
@@ -628,13 +658,8 @@
     justify-content: center;
     align-items: center;
 
-    border-radius: 0px;
-    background: #333333;
-    box-shadow: inset 5px 5px 10px #1d1d1d,
-        inset -5px -5px 10px #494949;
+    border: 1px solid #222;
 }
-
-
 
 .profile .inner .pro_box>ul:nth-child(1)>li {
     color: #bbb;

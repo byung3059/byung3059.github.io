@@ -135,10 +135,10 @@
     margin: 0 0 24px 0;
     outline: none;
 
-    font-size: 48px;
-    line-height: 48px;
-    font-weight: 500;
-    font-family: 'Noto Serif KR';
+    font-size: 56px;
+    line-height: 56px;
+    font-weight: 100;
+    font-family: "Noto Serif";
     color: var(--white-color);
 
     white-space: nowrap;
@@ -389,13 +389,16 @@
     background: rgba(0, 0, 0, 0.8);
 }
 
-
 .PROJECT01 {
     background: url(../images/ptbg01.jpg)no-repeat center center/cover;
 }
 
 .PROJECT02 {
     background: url(../images/ptbg02.jpg)no-repeat center center/cover;
+}
+
+.PROJECT03 {
+    background: url(../images/ptbg03.jpg)no-repeat top center/cover;
 }
 
 .pt .inner {
@@ -409,7 +412,6 @@
     gap: 6rem;
     height: 100vh;
 }
-
 
 .pt .itm .txt_box {
     min-width: 33rem;
@@ -490,7 +492,6 @@
     border-radius: 16px;
     overflow: hidden;
 
-    box-shadow: 0px 30px 60px -30px #000000;
 }
 
 .pt .itm01 .mokup .case {
@@ -504,6 +505,32 @@
 .pt .itm03 .mokup .case {
     background: url(../images/pt03.jpg)no-repeat top center/cover;
 }
+
+/* 애니메이션 */
+
+.pt .itm .txt_box {
+    opacity: 0;
+    transform: translate(-100%, 0);
+}
+
+.pt.active .itm .txt_box {
+    opacity: 1;
+    transform: translate(0, 0);
+    transition: 0.5s 0.5s;
+}
+
+.pt .itm .mokup {
+    opacity: 0;
+    transform: translate(50%, 0);
+}
+
+.pt.active .itm .mokup {
+    opacity: 1;
+    transform: translate(0, 0);
+    transition: 0.5s 0.8s;
+}
+
+
 
 @media(max-width:768px) {
     .pt .itm {
@@ -593,41 +620,22 @@
     font-weight: 700;
 }
 
-.tr .tr_link {
+.tr .tab_box {
     display: flex;
     gap: 3rem;
-    align-items: center;
 }
 
-.tr .tr_link .tr_box figure {
-    margin: 0 0 4rem 0;
-}
-
-.tr .tr_link .tr_box figure .img_box img {
+.tr .tab_box .itm img {
     border-radius: 16px;
-    box-shadow: 0px 30px 60px -30px #000000;
 }
 
-.tr .tr_link .tr_box .txt {
+.tr .tab_box .itm .txt {
+    margin: 24px 0 0 0;
     text-align: center;
 }
 
-.tr .tr_link .tr_box .txt strong {
-    font-size: 2rem;
-    line-height: 2.4rem;
-}
 
-@media(max-width: 768px) {
-    .tr .tit {
-        display: none;
-    }
-
-    .tr .tr_link .tr_box .txt strong {
-        font-size: 1.6rem;
-        line-height: 1.6rem;
-    }
-
-}
+@media(max-width: 768px) {}
 
 
 
@@ -735,7 +743,7 @@
     width: 100%;
     height: 100%;
     transform: translate(-50%, -50%);
-    background: #222;
+    background: #111;
     border-radius: 50%;
     transition: 0.5s;
 }

@@ -1,6 +1,5 @@
 MainFullpage();
 menuBtnAction();
-// clock();
 
 
 
@@ -94,54 +93,4 @@ function menuBtnAction() {
     })
 
 }
-
-
-// function clock() {
-//     setInterval(() => {
-//         // 현재 날짜 time에 할당
-//         const time = new Date()
-
-//         // time에서 시간만 추출 (시, 분, 초)
-//         const hour = time.getHours();     //0~23
-//         const min = time.getMinutes();      //0~59
-//         const sec = time.getSeconds();      //0~59
-
-//         // 화면상의 객체 선택
-//         const hh = document.getElementById('hour')
-//         const mm = document.getElementById('min')
-//         const ss = document.getElementById('sec')
-
-//         // 각도 선택
-//         if (hour >= 12) {
-//             const DegHour = (hour - 12) * 30 + min * (360 / 12 / 60) // 분을 고려해서 시침이 한번에 움직이지 않게 하기 위함 
-//             const DegMin = min * 6
-//             const DegSec = sec * 6
-
-//             hh.style.transform = `rotate(${DegHour}deg)`;
-//             mm.style.transform = `rotate(${DegMin}deg)`;
-//             ss.style.transform = `rotate(${DegSec}deg)`;
-
-//         }
-//         else {
-//             const DegHour = (hour - 12) * 30 + min * (360 / 12 / 60)    // 0.5를 곱해 60분기준 30도를 추가 ex) 30분이라면 15도의 각도 추가
-//             const DegMin = min * 6
-//             const DegSec = sec * 6
-
-//             hh.style.transform = `rotate(${DegHour}deg)`;
-//             mm.style.transform = `rotate(${DegMin}deg)`;
-//             ss.style.transform = `rotate(${DegSec}deg)`;
-//         }
-//     }, 1000)
-// }
-
-
-
-
-
-
-
-
-
-
-
 

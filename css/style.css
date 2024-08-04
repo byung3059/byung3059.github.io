@@ -51,12 +51,11 @@
         left: 0;
         right: 0;
         height: 6rem;
-        background: var(--background-color);
+        background: transparent;
         border-bottom: 1px solid rgba(255, 255, 255, 0.05);
     }
 
     .hd.on {
-        background: transparent;
         border: none;
     }
 
@@ -87,9 +86,7 @@
         background: none;
     }
 
-    .menu.active .btn::before {
-        background: url(../images/menu_black.svg);
-    }
+
 }
 
 
@@ -132,11 +129,11 @@
 }
 
 .intro .tit h2 {
-    margin: 0 0 24px 0;
+    /* margin: 0 0 24px 0; */
     outline: none;
 
-    font-size: 56px;
-    line-height: 56px;
+    font-size: 64px;
+    line-height: 64px;
     font-weight: 100;
     font-family: "Noto Serif";
     color: var(--white-color);
@@ -241,132 +238,65 @@
 
 
 @media(max-width:768px) {
-    .intro>* {
-        outline: unset;
+    .intro .cicle::after {
+        width: 320px;
+        height: 320px;
+        animation: after768 10s infinite ease-in-out;
     }
 
-    .intro::before {
-        width: 100vh;
-        height: 22vh;
+    .intro .cicle::before {
+        width: 320px;
+        height: 320px;
+        animation: before768 10s infinite ease-in-out;
     }
 
-    .intro::after {
-        width: 100vh;
-        height: 22vh;
-    }
-
-    @keyframes introback {
+    @keyframes before768 {
         0% {
-            width: 100vh;
-            height: 22vh;
+            top: 30px;
         }
 
-        40% {
-            width: 100vh;
-            height: 36vh;
-        }
+        50% {
+            top: 100px;
 
-        60% {
-            width: 100vh;
-            height: 36vh;
-        }
-
-
-        80% {
-            width: 100vh;
-            height: 22vh;
         }
 
         100% {
-            width: 100vh;
-            height: 22vh;
+            top: 30px;
+
         }
     }
 
-    .intro .inner {
-        align-items: center;
-    }
+    @keyframes after768 {
+        0% {
+            bottom: 30px;
 
-    .intro .tit {
-        position: static;
-        transform: translate(0, 0);
-        text-align: center;
-        margin: 0 0 24px 0;
-    }
+        }
 
-    .intro .tit p {
-        font-size: 14px;
-    }
+        50% {
+            bottom: 100px;
 
-    .intro .neum_back {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+        }
 
-    .intro .neum_box {
-        position: static;
-        width: 460px;
-        height: 460px;
-        transform: translate(0, 0);
-
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-
-    .intro .canvas {
-        width: 460px;
-        height: 460px;
-    }
-
-    .clock {
-        position: static;
-        transform: translate(0, 0);
-        width: 220px;
-        height: 220px;
-    }
-
-    #center {
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-    }
-
-    #hour {
-        top: 46px;
-        left: 109px;
-        height: 64px;
-    }
-
-    #min {
-        top: 20px;
-        left: 109px;
-        height: 90px;
-    }
-
-    #sec {
-        top: 10px;
-        left: 109px;
-        height: 100px;
-    }
-
-    .intro .tit h2 {
-        font-size: 24px;
-        line-height: 24px;
+        100% {
+            bottom: 30px;
+        }
     }
 }
 
 @media(max-width:600px) {
-    .intro .neum_box {
-        width: 320px;
-        height: 320px;
+    .intro .tit h2 {
+        font-size: 32px;
+        line-height: 32px;
     }
 
-    .intro .canvas {
-        width: 320px;
-        height: 320px;
+    .intro .cicle::after {
+        width: 200px;
+        height: 200px;
+    }
+
+    .intro .cicle::before {
+        width: 200px;
+        height: 200px;
     }
 }
 
@@ -386,7 +316,7 @@
     content: '';
     position: absolute;
     inset: 0 0 0 0;
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.85);
 }
 
 .PROJECT01 {
@@ -491,7 +421,6 @@
     height: 100%;
     border-radius: 16px;
     overflow: hidden;
-
 }
 
 .pt .itm01 .mokup .case {
@@ -503,6 +432,8 @@
 }
 
 .pt .itm03 .mokup .case {
+    border: 1px solid #222;
+
     background: url(../images/pt03.jpg)no-repeat top center/cover;
 }
 
@@ -549,13 +480,16 @@
     }
 
     .pt .itm .txt_box .tit {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
         margin: 0;
     }
 
     .pt .itm .txt_box .tit h2 {
         font-size: 3.2rem;
         line-height: 3.2rem;
-        margin: 0 0 8px 0;
+        margin: 0;
         text-indent: 0;
     }
 
@@ -620,22 +554,36 @@
     font-weight: 700;
 }
 
-.tr .tab_box {
+.tr .tr_box {
     display: flex;
-    gap: 3rem;
+    gap: 30px;
 }
 
-.tr .tab_box .itm img {
+.tr .tr_box .itm img {
     border-radius: 16px;
 }
 
-.tr .tab_box .itm .txt {
+.tr .tr_box .itm .txt {
     margin: 24px 0 0 0;
     text-align: center;
 }
 
+.tr .tr_box .itm .txt strong {
+    font-size: 20px;
+    line-height: 24px;
+}
 
-@media(max-width: 768px) {}
+
+@media(max-width: 768px) {
+    .tr .tr_box {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .tr .tr_box .itm:nth-child(1) {
+        grid-column: 1 / 3;
+    }
+}
 
 
 
@@ -658,15 +606,15 @@
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 60rem;
-    height: 30rem;
+    width: 64rem;
+    height: 40rem;
 
     display: flex;
     gap: 30px;
     justify-content: center;
     align-items: center;
 
-    border: 1px solid #222;
+    border: 1px solid #333;
 }
 
 .profile .inner .pro_box>ul:nth-child(1)>li {
@@ -675,7 +623,7 @@
 }
 
 .profile .inner .pro_box>ul>li {
-    font-size: 16px;
+    font-size: 20px;
     line-height: 40px;
 }
 
@@ -701,11 +649,6 @@
         margin: 0 0 4rem 0;
     }
 
-    .profile .inner .pro_box>ul>li {
-        font-size: 14px;
-        line-height: 32px;
-    }
-
     .profile .copy {
         position: static;
         transform: translate(0, 0);
@@ -715,6 +658,11 @@
 @media(max-width:633px) {
     .profile .inner .pro_box {
         width: 100%;
+    }
+
+    .profile .inner .pro_box>ul>li {
+        font-size: 14px;
+        line-height: 32px;
     }
 }
 

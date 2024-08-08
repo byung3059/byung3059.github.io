@@ -143,15 +143,14 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -70%);
 
     text-align: center;
     outline: none;
 }
 
 .intro .tit h2 {
-    outline: none;
-
+    margin: 0 0 2.4rem 0;
     font-size: 6.4rem;
     line-height: 6.4rem;
     font-weight: 100;

@@ -257,6 +257,10 @@
 
 
 @media(max-width:768px) {
+.intro::before{
+    display: none;
+}
+    
     .intro .cicle::after {
         width: 32rem;
         height: 32rem;

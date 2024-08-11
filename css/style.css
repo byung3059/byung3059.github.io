@@ -257,10 +257,6 @@
 
 
 @media(max-width:768px) {
-.intro::before{
-    display: none;
-}
-    
     .intro .cicle::after {
         width: 32rem;
         height: 32rem;
@@ -311,11 +307,6 @@
         font-size: 3.2rem;
         line-height: 3.2rem;
     }
-    
-    .intro .tit p {
-    font-size: 1.4rem;
-    line-height: 1.6rem;
-}
 
     .intro .cicle::after {
         width: 20rem;
@@ -460,8 +451,18 @@
     background: url(../images/pt01.jpg)no-repeat top center/cover;
 }
 
+.pt .itm01 .mokup .case:hover {
+    transition: 5s linear;
+    background: url(../images/pt01.jpg)no-repeat bottom center/cover;
+}
+
 .pt .itm02 .mokup .case {
     background: url(../images/pt02.jpg)no-repeat top center/cover;
+}
+
+.pt .itm02 .mokup .case:hover {
+    transition: 8s linear;
+    background: url(../images/pt02.jpg)no-repeat bottom center/cover;
 }
 
 .pt .itm03 .mokup .case {
@@ -470,8 +471,18 @@
     background: url(../images/pt03.jpg)no-repeat top center/cover;
 }
 
+.pt .itm03 .mokup .case:hover {
+    transition: 5s linear;
+    background: url(../images/pt03.jpg)no-repeat bottom center/cover;
+}
+
 .pt .itm04 .mokup .case {
     background: url(../images/pt04.jpg)no-repeat top center/cover;
+}
+
+.pt .itm04 .mokup .case:hover {
+    transition: 5s linear;
+    background: url(../images/pt04.jpg)no-repeat bottom center/cover;
 }
 
 /* 애니메이션 */

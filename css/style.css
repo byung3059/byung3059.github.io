@@ -257,6 +257,10 @@
 
 
 @media(max-width:768px) {
+    .intro .tit {
+        transform: translate(-50%, -50%);
+    }
+
     .intro::before {
         display: none;
     }

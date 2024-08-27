@@ -588,7 +588,7 @@
     .pt.active .itm .txt_box {
         opacity: 1;
         transform: translate(0, 0);
-        transition: 0.5s 0.8s;
+        transition: none;
     }
 
     .pt .itm .mokup {
@@ -599,7 +599,7 @@
     .pt.active .itm .mokup {
         opacity: 1;
         transform: translate(0, 0);
-        transition: 0.5s 0.8s;
+        transition: none;
     }
 
 }

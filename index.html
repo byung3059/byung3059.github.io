@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta property="og:image" content="https://byung3059.github.io/img/og_image.jpg" />
+		<link rel="icon" href="https://byung3059.github.io/img/favicon.png" type="image/png" sizes="512x512" />
+		<title>2026 Portfolio</title>
+
+		<script>
+			document.documentElement.classList.add("is_intro");
+			setTimeout(function () {
+				document.documentElement.classList.remove("is_intro", "intro_fill", "intro_ui");
+			}, 8000);
+		</script>
+
+		<!-- Style -->
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.css" />
+		<link rel="stylesheet" href="lib/scss/reset.css" />
+		<link rel="stylesheet" href="lib/scss/layout.css" />
+		<link rel="stylesheet" href="scss/hd.css" />
+		<link rel="stylesheet" href="scss/style.css" />
+		<link rel="stylesheet" href="scss/ft.css" />
+
+		<!-- Three.js / Lenis -->
+		<script type="importmap">
+			{
+				"imports": {
+					"three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+					"three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/",
+					"lenis": "https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.mjs"
+				}
+			}
+		</script>
+		<script type="module" src="js/main.js"></script>
+	</head>
+	<body>
+		<div class="wrap">
+			<header class="header">
+				<div class="inner">
+					<a href="/" class="hd_logo">2026 PORTFOLIO</a>
+					<button type="button" class="hd_menu_btn" id="menuBtn" aria-expanded="false" aria-controls="gnb">MENU</button>
+				</div>
+			</header>
+
+			<nav class="gnb" id="gnb" aria-label="메뉴">
+				<ul class="gnb_list">
+					<li><a href="#top" data-target="top">Intro</a></li>
+					<li><a href="#project" data-target="project">Project</a></li>
+					<li><a href="#about" data-target="about">About</a></li>
+					<li><a href="#contact" data-target="contact">Contact</a></li>
+				</ul>
+			</nav>
+
+			<main class="main">
+				<section class="main_visual" id="top">
+					<div class="inner">
+						<h1 class="mv_title">
+							<span>DETAIL</span>
+							<span>ORIENTED</span>
+						</h1>
+
+						<div class="mv_side">
+							<p class="mv_year">© 2026</p>
+							<a href="#project" class="mv_scroll" id="mvScroll">SCROLL DOWN</a>
+						</div>
+					</div>
+				</section>
+
+				<div class="mv_carousel" id="mvCarousel"></div>
+
+				<section class="project" id="project">
+					<div class="inner">
+						<h2 class="blind">Projects</h2>
+						<ul class="pj_list">
+							<li class="pj_item">
+								<a href="https://anderssonbell.com/" target="_blank" rel="noopener noreferrer">
+									<div class="pj_thumb"><img src="img/project/adsb.jpg" alt="앤더슨벨" /></div>
+									<div class="pj_info">
+										<p class="pj_title">앤더슨벨 <span class="pj_tag">카페24 템플릿 기반 퍼블리싱</span></p>
+										<span class="pj_year">©2025</span>
+									</div>
+								</a>
+							</li>
+							<li class="pj_item">
+								<a href="https://kodakphotoprinter.co.kr/" target="_blank" rel="noopener noreferrer">
+									<div class="pj_thumb"><img src="img/project/kodak.jpg" alt="코닥포토프린터" /></div>
+									<div class="pj_info">
+										<p class="pj_title">코닥포토프린터 <span class="pj_tag">카페24 템플릿 기반 퍼블리싱</span></p>
+										<span class="pj_year">©2025</span>
+									</div>
+								</a>
+							</li>
+							<li class="pj_item">
+								<a href="https://www.onthefarm.co.kr/" target="_blank" rel="noopener noreferrer">
+									<div class="pj_thumb"><img src="img/project/onthefarm.jpg" alt="낭만치유농업" /></div>
+									<div class="pj_info">
+										<p class="pj_title">낭만치유농업 <span class="pj_tag">기획 · 디자인 · 퍼블리싱</span></p>
+										<span class="pj_year">©2025</span>
+									</div>
+								</a>
+							</li>
+							<li class="pj_item">
+								<a href="https://stockitc.com/" target="_blank" rel="noopener noreferrer">
+									<div class="pj_thumb"><img src="img/project/kitc.jpg" alt="KITC" /></div>
+									<div class="pj_info">
+										<p class="pj_title">KITC <span class="pj_tag">퍼블리싱</span></p>
+										<span class="pj_year">©2026</span>
+									</div>
+								</a>
+							</li>
+							<li class="pj_item">
+								<a href="https://re-aclinic.com/" target="_blank" rel="noopener noreferrer">
+									<div class="pj_thumb"><img src="img/project/re-a.jpg" alt="리에의원" /></div>
+									<div class="pj_info">
+										<p class="pj_title">리에의원 <span class="pj_tag">퍼블리싱</span></p>
+										<span class="pj_year">©2026</span>
+									</div>
+								</a>
+							</li>
+							<li class="pj_item">
+								<a href="https://yonseiforeon.com/" target="_blank" rel="noopener noreferrer">
+									<div class="pj_thumb"><img src="img/project/foreon.jpg" alt="연세포레온안과" /></div>
+									<div class="pj_info">
+										<p class="pj_title">연세포레온안과 <span class="pj_tag">퍼블리싱</span></p>
+										<span class="pj_year">©2026</span>
+									</div>
+								</a>
+							</li>
+							<li class="pj_item">
+								<a href="https://promiseuro.co.kr/" target="_blank" rel="noopener noreferrer">
+									<div class="pj_thumb"><img src="img/project/promise.jpg" alt="프로미스비뇨의학과" /></div>
+									<div class="pj_info">
+										<p class="pj_title">프로미스비뇨의학과 <span class="pj_tag">퍼블리싱</span></p>
+										<span class="pj_year">©2026</span>
+									</div>
+								</a>
+							</li>
+							<li class="pj_item">
+								<a href="https://hyjhmedi.co.kr/" target="_blank" rel="noopener noreferrer">
+									<div class="pj_thumb"><img src="img/project/hymedi.jpg" alt="한양지현내과의원" /></div>
+									<div class="pj_info">
+										<p class="pj_title">한양지현내과의원 <span class="pj_tag">퍼블리싱</span></p>
+										<span class="pj_year">©2026</span>
+									</div>
+								</a>
+							</li>
+							<li class="pj_item">
+								<a href="https://xn--vb0bn4enutboe5nq.com/" target="_blank" rel="noopener noreferrer">
+									<div class="pj_thumb"><img src="img/project/ystop.jpg" alt="연세탑내과" /></div>
+									<div class="pj_info">
+										<p class="pj_title">연세탑내과 <span class="pj_tag">퍼블리싱</span></p>
+										<span class="pj_year">©2026</span>
+									</div>
+								</a>
+							</li>
+							<li class="pj_item">
+								<a href="https://seoulnu.com/" target="_blank" rel="noopener noreferrer">
+									<div class="pj_thumb"><img src="img/project/nudent.jpg" alt="서울앤유치과" /></div>
+									<div class="pj_info">
+										<p class="pj_title">서울앤유치과 <span class="pj_tag">퍼블리싱</span></p>
+										<span class="pj_year">©2026</span>
+									</div>
+								</a>
+							</li>
+							<li class="pj_item">
+								<a href="https://dreamkwon.com/" target="_blank" rel="noopener noreferrer">
+									<div class="pj_thumb"><img src="img/project/dreamkwon.jpg" alt="드림권내과" /></div>
+									<div class="pj_info">
+										<p class="pj_title">드림권내과 <span class="pj_tag">퍼블리싱</span></p>
+										<span class="pj_year">©2026</span>
+									</div>
+								</a>
+							</li>
+							<li class="pj_item">
+								<a href="https://thecitymedi.com/" target="_blank" rel="noopener noreferrer">
+									<div class="pj_thumb"><img src="img/project/dt-center.jpg" alt="더시티 프리미엄 검진센터" /></div>
+									<div class="pj_info">
+										<p class="pj_title">더시티 프리미엄 검진센터 <span class="pj_tag">퍼블리싱</span></p>
+										<span class="pj_year">©2026</span>
+									</div>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</section>
+
+				<div class="ab_wrap">
+					<div class="ab_bg" id="abSphere" aria-hidden="true"></div>
+
+					<section class="about" id="about">
+						<div class="ab_sticky">
+							<div class="inner">
+								<h2 class="blind">About</h2>
+
+								<p class="ab_text" id="abText">
+									디자이너가 설계한<br class="ab_br_mo" />
+									화면을<br class="ab_br_pc" />
+									1px의 오차도<br class="ab_br_mo" />
+									허용하지 않도록<br class="ab_br_pc" />
+									시안부터<br class="ab_br_mo" />
+									개발까지 디자이너와 함께 고민하고<br />
+									서로의 기준을 하나로 맞춰<br class="ab_br_mo" />
+									나가며<br class="ab_br_pc" />
+									완벽한 결과로<br class="ab_br_mo" />
+									완성합니다.
+								</p>
+							</div>
+						</div>
+					</section>
+
+					<footer class="footer" id="contact">
+						<div class="inner">
+							<h2 class="ft_title">CONTACT US</h2>
+
+							<div class="ft_list">
+								<div class="ft_item">
+									<h3 class="ft_name">Byun-Young-Sung</h3>
+								</div>
+
+								<div class="ft_item">
+									<h3 class="ft_head">Contact</h3>
+									<dl class="ft_info">
+										<div>
+											<dt>Tel</dt>
+											<dd><a href="tel:01023003059">010-2300-3059</a></dd>
+										</div>
+										<div>
+											<dt>E-mail</dt>
+											<dd><a href="mailto:byung3059@naver.com">byung3059@naver.com</a></dd>
+										</div>
+										<div>
+											<dt>Github</dt>
+											<dd><a href="https://github.com/byung3059" target="_blank" rel="noopener noreferrer">github.com/byung3059</a></dd>
+										</div>
+									</dl>
+								</div>
+
+								<div class="ft_item">
+									<h3 class="ft_head">Experiences</h3>
+									<ul class="ft_exp">
+										<li>
+											<p>IST 크리에이티브</p>
+											<span>2025.09 – 2026.10</span>
+										</li>
+										<li>
+											<p>ENM 커뮤니케이션 웹 에이전시 근무</p>
+											<span>2024.10 – 2025.03</span>
+										</li>
+									</ul>
+								</div>
+							</div>
+
+							<div class="ft_bottom">
+								<p class="ft_note">해당 포트폴리오는 비상업적인 용도로 제작되었습니다.</p>
+								<p class="ft_copy">© 2026 BYS All rights reserved.</p>
+							</div>
+						</div>
+					</footer>
+				</div>
+			</main>
+
+			<div class="mv_cursor" id="mvCursor" aria-hidden="true">
+				<span class="material-symbols-outlined">arrow_downward</span>
+			</div>
+
+			<div class="mv_cursor_ring" id="mvCursorRing" aria-hidden="true">
+				<svg viewBox="0 0 160 160">
+					<defs>
+						<path id="mvCursorPath" d="M12,80 a68,68 0 1,1 136,0 a68,68 0 1,1 -136,0" />
+					</defs>
+					<text>
+						<textPath href="#mvCursorPath" textLength="427">VIEW PORTFOLIO · VIEW PORTFOLIO · VIEW PORTFOLIO ·</textPath>
+					</text>
+				</svg>
+			</div>
+		</div>
+	</body>
+</html>

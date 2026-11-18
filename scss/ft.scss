@@ -1,0 +1,278 @@
+// =========================================
+// Footer (About · Contact)
+// =========================================
+// 배경은 투명 : about 과 함께 .ab_wrap(검정) 안에 있어서 뒤에 유리 구체가 보임
+// 큰 CONTACT US 제목 + 이름 / 연락처 / 경력 3단 + 안내 문구·저작권
+// 3단 레이아웃은 이전 포트폴리오(pf_0801 #profile)와 같은 값 : 폭 1200px, 단 400px(안쪽 여백 80 / 40px), 단 사이 가는 세로선
+$bp-wide: 1570px;
+$bp-tablet: 1024px;
+$bp-mobile: 768px;
+$bp-phone: 480px; // 단을 한 줄로 쌓는 기준 (768 태블릿 세로까지는 2단 유지)
+
+$ft-line: rgba(#fff, 0.1); // 단 구분선
+
+@mixin wide-down {
+	@media (max-width: $bp-wide) {
+		@content;
+	}
+}
+
+@mixin tablet {
+	@media (max-width: $bp-tablet) {
+		@content;
+	}
+}
+
+@mixin mobile {
+	@media (max-width: $bp-mobile) {
+		@content;
+	}
+}
+
+@mixin phone {
+	@media (max-width: $bp-phone) {
+		@content;
+	}
+}
+
+// 위치 : sticky + bottom 0 → about 이 지나가는 동안에도 화면에 겹쳐 고정되어 있고(처음엔 투명),
+// about 글이 사라진 뒤 스크롤하면 그 자리(화면 가운데)에서 투명도 0 → 1 로 나타남 (js/main.js)
+.footer {
+	position: sticky;
+	bottom: 0;
+	z-index: 1; // about 위로
+	display: flex;
+	align-items: center; // 화면 높이 가득, 내용은 세로 가운데
+	min-height: 100vh;
+	min-height: 100lvh;
+	padding: 4rem 0;
+	color: var(--white-color); // 배경은 래퍼(.ab_wrap)의 검정 + 뒤에 고정된 유리 구체
+
+	@include mobile {
+		padding: 9.6rem 0 4rem; // 고정 헤더 아래부터
+	}
+
+	// 콘텐츠 폭 1200px (좌우 여백 40px 포함 1280px) 가운데 정렬
+	// 제목 · 3단 · 안내 문구는 간격 없이 붙고, 사이 공간은 각 단의 위아래 여백(80px)이 만듦
+	.inner {
+		display: flex;
+		flex-direction: column;
+		max-width: 128rem;
+		margin: 0 auto;
+	}
+}
+
+// 영문 타이틀은 Unbounded
+// 크기 : about 글(.ab_text)과 같은 계산식(화면 폭에 비례, 최대 6.4rem) → 어느 폭에서든 about 과 같은 크기
+//   단, 한 단어라 작아지면 제목 느낌이 없어서 최소 3.2rem
+.ft_title {
+	font-family: "Unbounded", sans-serif;
+	font-size: max(3.2rem, round(down, min(6.4rem, (100vw - 8rem) * 0.9 / 17.3), 2px));
+	font-weight: 900;
+	text-align: center;
+
+	// 태블릿 이하(모바일 · 휴대폰 포함) 아래 여백 40px
+	@include tablet {
+		padding: 0 0 4rem;
+	}
+
+	@include mobile {
+		font-size: max(3.2rem, round(down, (100vw - 4rem) * 0.94 / 17.3, 2px));
+	}
+
+	// 휴대폰 : about 글(2.4rem)과 같게
+	@include phone {
+		font-size: 2.4rem;
+	}
+}
+
+// 단 배치
+// - PC : 같은 폭 3칸 (minmax 0 → 글자 길이와 상관없이 정확히 3등분), 단 사이 세로선
+// - 태블릿 이하 : 한 줄로 쌓고 전부 가운데 정렬 (제목 · 이름 · 연락처 · 경력 · 안내 문구가 한 축에), 단 사이 짧은 가로선
+.ft_list {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+
+	@include tablet {
+		grid-template-columns: minmax(0, 1fr);
+		margin: 0 0 4rem;
+	}
+
+	@include phone {
+		margin: 0 0 3.2rem;
+	}
+}
+
+.ft_item {
+	position: relative;
+	padding: 8rem 4rem;
+
+	// 단 사이 세로선 : 가운데 높이 160px
+	& + & {
+		&::before {
+			content: "";
+			position: absolute;
+			top: 50%;
+			left: 0;
+			width: 1px;
+			height: 16rem;
+			background: $ft-line;
+			translate: 0 -50%;
+		}
+	}
+
+	// 1280px 이하 : 단 좌우 여백을 줄여 이름(Byun-Young-Sung)이 칸 안에 들어오게
+	@media (max-width: 1280px) {
+		padding: 8rem 2rem;
+	}
+
+	// 태블릿 이하 : 가운데 정렬, 단 위에 짧은 가로선(40px)
+	@include tablet {
+		padding: 3.2rem 0;
+		text-align: center;
+
+		&:first-child {
+			padding: 0 0 3.2rem;
+		}
+
+		& + &::before {
+			top: 0;
+			left: 50%;
+			width: 4rem;
+			height: 1px;
+			translate: -50% 0;
+		}
+	}
+
+	@include phone {
+		padding: 2.4rem 0;
+
+		&:first-child {
+			padding: 0 0 2.4rem;
+		}
+	}
+}
+
+// 단 제목 (Unbounded 900) : 이름 단은 아래 여백 없음
+// 크기 : 단 안쪽 폭 320px 에 "Byun-Young-Sung"(10.95em)이 선에 닿지 않고 들어가도록 2.8rem (= 약 307px)
+.ft_name,
+.ft_head {
+	font-family: "Unbounded", sans-serif;
+	font-size: 2.8rem;
+	font-weight: 900;
+	white-space: nowrap;
+
+	@include wide-down {
+		font-size: 2.4rem;
+	}
+
+	@include tablet {
+		font-size: 2.8rem;
+	}
+
+	@include phone {
+		font-size: 1.8rem;
+	}
+}
+
+.ft_head {
+	margin: 0 0 2.4rem;
+
+	@include tablet {
+		margin: 0 0 2rem;
+	}
+
+	@include phone {
+		margin: 0 0 1.6rem;
+	}
+}
+
+// 연락처 · 경력 공통 : 16px / 300 / 투명도 0.8 (한 줄짜리라 line-height 는 body 의 1, 줄 간격은 gap 으로)
+.ft_info,
+.ft_exp {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+	font-size: 1.6rem;
+	font-weight: 300;
+
+	@include phone {
+		gap: 1.2rem;
+		font-size: 1.4rem;
+	}
+}
+
+// 연락처 : 항목명(64px, 700, 투명도 1) + 값
+.ft_info {
+	div {
+		display: flex;
+
+		// 태블릿 이하 : 줄마다 가운데 (항목명 · 값)
+		@include tablet {
+			justify-content: center;
+			gap: 1.2rem;
+		}
+	}
+
+	dt {
+		flex-shrink: 0;
+		min-width: 6.4rem;
+		font-weight: 700;
+
+		@include tablet {
+			min-width: 0;
+		}
+	}
+
+	dd {
+		opacity: 0.8;
+	}
+
+	a {
+		transition: opacity 0.3s;
+
+		&:hover {
+			opacity: 0.6;
+		}
+	}
+}
+
+// 경력 : 내용 + 기간 두 줄
+.ft_exp {
+	li {
+		display: flex;
+		flex-direction: column;
+		gap: 0.4rem;
+		opacity: 0.8;
+
+		@include tablet {
+			align-items: center;
+		}
+	}
+}
+
+// 안내 문구 · 저작권 : 가운데
+.ft_bottom {
+	display: flex;
+	flex-direction: column;
+	gap: 0.8rem;
+	font-weight: 300;
+	text-align: center;
+}
+
+.ft_note {
+	font-size: 1.6rem;
+
+	@include phone {
+		font-size: 1.4rem;
+	}
+}
+
+.ft_copy {
+	font-size: 1.4rem;
+	opacity: 0.6;
+
+	@include phone {
+		font-size: 1.2rem;
+	}
+}

@@ -1,0 +1,621 @@
+// =========================================
+// Variables & Mixins
+// =========================================
+$inner-pc: 4rem;
+$inner-tb: 4rem;
+$inner-mo: 2rem;
+
+$bp-tablet: 1024px;
+$bp-mobile: 768px;
+$bp-phone: 480px; // 휴대폰 (about 글 줄바꿈 전환 등)
+
+$bg: #f9f9f9; // 페이지 배경색
+$card-bg: #dddddd; // 프로젝트 카드 기본색 (js/main.js CARD_COLOR 와 동일)
+
+@mixin tablet {
+	@media (max-width: $bp-tablet) {
+		@content;
+	}
+}
+
+@mixin mobile {
+	@media (max-width: $bp-mobile) {
+		@content;
+	}
+}
+
+@mixin phone {
+	@media (max-width: $bp-phone) {
+		@content;
+	}
+}
+
+// =========================================
+// Common
+// =========================================
+// 스크롤바 : 폭 4px, 투명 바탕에 반투명 검정 막대 (리에의원과 같은 값)
+// html 뿐 아니라 전체에 걸어야 인트로의 스크롤바 폭 측정(js/main.js --sbw)도 4px 로 맞음
+::-webkit-scrollbar {
+	width: 4px;
+	background: transparent;
+}
+
+::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+	border-radius: 4px;
+	background: rgba(0, 0, 0, 0.4);
+}
+
+// 드래그(글자 선택) 색
+::selection {
+	color: var(--white-color);
+	background: #000;
+}
+
+// 배경 : $bg 단색 위에 종이 질감 이미지(img/bg.webp, WebP 90%)를 투명도 0.5 로 겹침
+// 이미지는 화면에 고정된 가상 요소라 스크롤해도 움직이지 않고, 내용 뒤(z-index -1)에 깔림
+body {
+	background: $bg;
+
+	&::before {
+		content: "";
+		position: fixed;
+		inset: 0;
+		z-index: -1;
+		background: url("../img/bg.webp") no-repeat center / cover;
+		opacity: 0.5;
+		pointer-events: none;
+	}
+}
+
+// 공통 이너 : 좌우 여백 PC 40 / 태블릿 40 / 모바일 20px
+.inner {
+	width: 100%;
+	padding: 0 $inner-pc;
+
+	@include tablet {
+		padding: 0 $inner-tb;
+	}
+
+	@include mobile {
+		padding: 0 $inner-mo;
+	}
+}
+
+// =========================================
+// Main Visual
+// =========================================
+// 배경 고정 : 스크롤해도 제자리에 있고 .project 가 위로 덮으며 올라옴
+.main_visual {
+	position: sticky;
+	top: 0;
+	display: flex;
+	height: 100vh;
+	height: 100svh;
+	min-height: 64rem;
+	overflow: hidden;
+	color: var(--txt01);
+
+	// 좌우 여백은 공통 .inner 와 같게 (40 / 40 / 20px)
+	.inner {
+		position: relative;
+		display: flex;
+		padding: 9.6rem $inner-pc 4rem;
+		container-type: inline-size;
+
+		@include tablet {
+			padding: 8rem $inner-tb 4rem;
+		}
+
+		@include mobile {
+			padding: 8rem $inner-mo 4rem;
+		}
+	}
+
+	// 배경 타이포 — DETAIL / ORIENTED 두 줄, 왼쪽 정렬, 하단에서 40px (이너 padding-bottom)
+	// 80cqi = 이너 콘텐츠 폭의 80%, 6.66 = Unbounded 900 기준 ORIENTED 글자폭(em)
+	// 30svh = 가로로 넓고 낮은 화면에서 두 줄이 화면 높이를 넘지 않게 제한
+	// round(down, …, 2px) = 계산된 크기를 짝수 px 로 내림
+	// margin-bottom : 줄 상자 아래 남는 여백만큼 내려서 ORIENTED 글자 바닥을 SCROLL DOWN 밑줄 라인에 맞춤
+	//   (Unbounded 는 글자 바닥(베이스라인)이 줄 상자 아래에서 line-height / 2 - 0.375em 위에 있음)
+	.mv_title {
+		--mv-lh: round(down, 0.9em, 2px);
+		display: flex;
+		flex: 1;
+		flex-direction: column;
+		justify-content: flex-end;
+		align-items: flex-start;
+		margin-bottom: round(nearest, 0.375em - var(--mv-lh) / 2, 2px);
+		font-family: "Unbounded", sans-serif;
+		font-size: round(down, min(80cqi / 6.66, 30svh), 2px);
+		font-weight: 900;
+		line-height: var(--mv-lh);
+
+		// 모바일 : 폭을 꽉 채움
+		@include mobile {
+			font-size: round(down, (100cqi - 0.8rem) / 6.66, 2px);
+		}
+
+		// 글자 왼쪽 기본 여백(사이드 베어링)만큼 당겨서 글자 왼쪽 끝을 이너 끝선에 딱 맞춤
+		// em 단위라 화면 크기에 따라 글자가 커지고 작아져도 항상 맞음 (Unbounded 900 기준 D 0.047em, O 0.031em)
+		span:first-child {
+			text-indent: -0.047em;
+		}
+
+		span:last-child {
+			text-indent: -0.031em;
+		}
+	}
+
+	// 오른쪽 정보 : © 2026 + SCROLL DOWN, h1 과 같이 하단 정렬
+	// SCROLL DOWN 은 © 2026 보다 살짝 작은 글자로 두고 양끝 정렬로 늘려서 두 줄 너비를 똑같이
+	.mv_side {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-end;
+		align-items: flex-end;
+		gap: 0.8rem;
+		font-weight: 700;
+
+		// 모바일(768px 이하) : © 2026 · SCROLL DOWN 숨김 (h1 이 폭을 꽉 채움)
+		@include mobile {
+			display: none;
+		}
+	}
+
+	.mv_year {
+		font-size: 3.2rem;
+
+		@include tablet {
+			font-size: 2.8rem;
+		}
+	}
+
+	// 스크롤 다운 : 너비를 © 2026 에 맞추고, 아래 밑줄이 왼쪽 → 오른쪽으로 그려졌다 사라짐
+	.mv_scroll {
+		position: relative;
+		align-self: stretch;
+		padding: 0 0 0.8rem; // 글자와 아래 밑줄 사이 간격
+		font-size: 1.4rem;
+		text-align: justify;
+		text-align-last: justify;
+
+		@include tablet {
+			font-size: 1.2rem;
+		}
+
+		&::after {
+			content: "";
+			position: absolute;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			height: 1px;
+			background: currentColor;
+			transform-origin: left;
+			animation: mvScrollLine 2s ease-in-out infinite;
+		}
+	}
+}
+
+@keyframes mvScrollLine {
+	0% {
+		transform: scaleX(0);
+		transform-origin: left;
+	}
+
+	50% {
+		transform: scaleX(1);
+		transform-origin: left;
+	}
+
+	51% {
+		transform-origin: right;
+	}
+
+	100% {
+		transform: scaleX(0);
+		transform-origin: right;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.main_visual .mv_scroll::after {
+		animation: none;
+	}
+}
+
+// 3D 카드 더미 (Three.js canvas) — 메인 비주얼·프로젝트 위를 날아다니므로 화면에 고정
+// 쌓임 순서 : .main_visual(sticky) < .project(1) < .mv_carousel(2) < .mv_cursor(3)
+.mv_carousel {
+	position: fixed;
+	inset: 0;
+	z-index: 2;
+	pointer-events: none; // 클릭 통과 (드래그·클릭은 .main_visual 에서 받음 : js/main.js)
+
+	canvas {
+		display: block;
+	}
+}
+
+// 카드 위에서 따라오는 커서 (위치는 js/main.js 가 translate 로 지정)
+// 가운데 화살표 원(Material Symbols) + 원 바깥을 도는 VIEW PORTFOLIO 글자 링
+.mv_cursor,
+.mv_cursor_ring {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 3;
+	pointer-events: none;
+	scale: 0;
+	transition: scale 0.3s;
+
+	&.is_show {
+		scale: 1;
+	}
+}
+
+.mv_cursor {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 12rem;
+	height: 12rem;
+	margin: -6rem 0 0 -6rem; // 커서 중심을 마우스 위치에
+	border-radius: 50%;
+	color: var(--white-color);
+	background: var(--txt01);
+
+	.material-symbols-outlined {
+		font-size: 3.2rem;
+	}
+}
+
+// 글자 링 : 원(12rem) 바깥 8px 띄우고 흰 글자로 한 바퀴 10초
+.mv_cursor_ring {
+	width: 16rem;
+	height: 16rem;
+	margin: -8rem 0 0 -8rem;
+	color: var(--white-color);
+
+	svg {
+		display: block;
+		width: 100%;
+		height: 100%;
+		font-size: 1.2rem;
+		font-weight: 100;
+		fill: currentColor;
+		animation: mvCursorSpin 10s linear infinite;
+	}
+}
+
+@keyframes mvCursorSpin {
+	to {
+		rotate: 360deg;
+	}
+}
+
+@media (prefers-reduced-motion: reduce) {
+	.mv_cursor_ring svg {
+		animation: none;
+	}
+}
+
+// =========================================
+// Intro (js/main.js initIntro)
+// =========================================
+// is_intro : 빈 화면 → h1 각 줄은 투명 + 자간이 넓게 벌어진 상태, 로고·오른쪽 정보 숨김
+// intro_fill : h1 각 줄이 서서히 나타나며 자간이 제자리로 모임 (두 번째 줄은 조금 늦게)
+// intro_ui : 로고·오른쪽 정보가 아래에서 살짝 올라오며 나타남
+.main_visual .mv_title > span {
+	transition:
+		opacity 1.2s ease,
+		letter-spacing 1.6s cubic-bezier(0.16, 1, 0.3, 1);
+
+	&:last-child {
+		transition-delay: 0.12s;
+	}
+}
+
+.main_visual .mv_side,
+.header {
+	transition:
+		opacity 0.8s,
+		translate 0.8s;
+}
+
+// 메뉴가 열려 있는 동안도 인트로와 같은 방식으로 스크롤 막기 (js/main.js initMenu)
+.is_menu {
+	overflow: hidden;
+	padding-right: var(--sbw, 0px);
+
+	.mv_carousel {
+		right: var(--sbw, 0px);
+	}
+
+	.header {
+		width: calc(100% - var(--sbw, 0px));
+	}
+}
+
+// 인트로 중 스크롤 막기 : html overflow hidden → 카드 쌓기가 끝나 is_intro 가 빠지면 풀림
+// 스크롤바가 사라진 만큼(--sbw, js/main.js 가 잼) 오른쪽을 비워서 화면 폭이 그대로 → 끝날 때 덜컹임(깜빡임) 없음
+// (화면에 고정된 카드 캔버스·헤더도 같은 폭으로)
+.is_intro {
+	overflow: hidden;
+	padding-right: var(--sbw, 0px);
+
+	.mv_carousel {
+		right: var(--sbw, 0px);
+	}
+
+	.header {
+		width: calc(100% - var(--sbw, 0px));
+	}
+
+	.main_visual .mv_title > span {
+		opacity: 0;
+		letter-spacing: 0.16em;
+	}
+
+	.main_visual .mv_side,
+	.header {
+		opacity: 0;
+		translate: 0 1.6rem;
+	}
+
+	&.intro_fill .main_visual .mv_title > span {
+		opacity: 1;
+		letter-spacing: 0;
+	}
+
+	&.intro_ui .main_visual .mv_side,
+	&.intro_ui .header {
+		opacity: 1;
+		translate: 0 0;
+	}
+}
+
+// =========================================
+// Project
+// =========================================
+// 아래 여백 = 메인 비주얼 h1(DETAIL ORIENTED) 윗선부터 화면 바닥까지 거리 (--mv-title-space, js/main.js 가 계산)
+// → 카드가 다 지나간 뒤 about 이 드러나기 직전, 뒤에 고정된 DETAIL ORIENTED 가 잘리지 않고 다 보임 (JS 가 없으면 기본값)
+.project {
+	position: relative;
+	z-index: 1;
+	padding: 9.6rem 0 var(--mv-title-space, 16rem);
+	color: var(--txt01);
+
+	@include tablet {
+		padding: 8rem 0 var(--mv-title-space, 12rem);
+	}
+
+	@include mobile {
+		padding: 6.4rem 0 var(--mv-title-space, 8rem);
+	}
+
+	// PC 3칸 / 태블릿·모바일 2칸 (태블릿에서 3칸이면 카드가 너무 작아 제목·태그가 줄바꿈됨) / 휴대폰 1칸
+	.pj_list {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 4rem;
+
+		@include tablet {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+			gap: 2.4rem;
+		}
+
+		@include mobile {
+			gap: 1.6rem;
+		}
+
+		@include phone {
+			grid-template-columns: minmax(0, 1fr);
+		}
+	}
+
+	.pj_item a {
+		position: relative;
+		isolation: isolate;
+		display: flex;
+		flex-direction: column;
+		gap: 2.4rem;
+		height: 100%;
+		padding: 2.4rem;
+		border: 1px solid rgba($color: #000000, $alpha: 0.05);
+
+		// 카드 뒤(고정된 메인 비주얼) 블러
+		&::before {
+			content: "";
+			position: absolute;
+			inset: 0;
+			z-index: -1;
+			background: rgba($bg, 0.4);
+			-webkit-backdrop-filter: blur(2.4rem);
+			backdrop-filter: blur(2.4rem);
+		}
+
+		// 카드 안쪽 여백 · 썸네일-정보 간격 : PC 24px → 태블릿·모바일 20px → 휴대폰 16px
+		@include tablet {
+			gap: 2rem;
+			padding: 2rem;
+		}
+
+		@include phone {
+			gap: 1.6rem;
+			padding: 1.6rem;
+		}
+	}
+
+	.pj_thumb {
+		display: flex;
+		aspect-ratio: 4 / 5;
+		overflow: hidden;
+		background: $card-bg;
+
+		// 이미지는 640×800 (4:5) 으로 맞춰 넣기 — 3D 카드에도 같은 이미지가 들어감 (js/main.js)
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			transition: scale 0.6s;
+		}
+	}
+
+	// 카드에 마우스를 올리면 썸네일 이미지가 살짝 커짐 (넘치는 부분은 .pj_thumb overflow 로 잘림)
+	.pj_item:hover .pj_thumb img {
+		scale: 1.05;
+	}
+
+	.pj_info {
+		display: flex;
+		justify-content: space-between;
+		align-items: flex-end;
+		gap: 1.6rem;
+
+		@include mobile {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 0.8rem;
+		}
+	}
+
+	.pj_title {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: baseline;
+		gap: 0.8rem;
+		font-size: 2.4rem;
+		font-weight: 700;
+
+		// 1440px 이하 : 프로젝트명 아래로 태그 (한 줄에 두면 좁은 카드에서 태그가 어중간하게 줄바꿈됨)
+		@media (max-width: 1440px) {
+			flex-direction: column;
+			align-items: flex-start;
+		}
+
+		@include mobile {
+			font-size: 1.8rem;
+		}
+	}
+
+	.pj_tag {
+		font-size: 1.4rem;
+		font-weight: 300;
+		color: var(--txt04);
+	}
+
+	.pj_year {
+		flex-shrink: 0;
+		font-size: 1.6rem;
+		font-weight: 400;
+
+		@include mobile {
+			font-size: 1.2rem;
+		}
+	}
+
+	// JS 동작 시 : 3D 카드가 썸네일 자리에 도착하기 전까지 썸네일 숨김
+	&.js_morph .pj_thumb {
+		visibility: hidden;
+	}
+
+	&.js_morph.is_placed .pj_thumb {
+		visibility: visible;
+	}
+}
+
+// =========================================
+// About
+// =========================================
+// about + 푸터를 감싸는 검정 래퍼
+// 안쪽 구체·about 무대는 화면에 고정(fixed)이고, clip-path 로 래퍼 영역 안에서만 보이게 잘라냄
+// → about 이 밑에서 올라오는 게 아니라, 프로젝트 섹션이 위로 밀려 올라가며 아래에 깔린 about 이 드러남
+.ab_wrap {
+	position: relative;
+	z-index: 1; // 고정된 메인 비주얼 위로 덮음
+	background: #000;
+	clip-path: inset(0);
+}
+
+// 유리 구체 캔버스 : 화면 가득 고정, about·푸터 내내 뒤에 머묾
+// 투명도는 스크롤에 따라 js/main.js 가 조절 (about 진입 땐 또렷하게 100%)
+.ab_bg {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	height: 100svh;
+
+	canvas {
+		display: block;
+	}
+}
+
+// 섹션 높이 400vh 동안 화면 가운데 고정 → 진입하면 유리 구체가 커졌다 작아지며 글이 나타나고, 글자가 한 자씩 채워짐 (js/main.js)
+.about {
+	position: relative;
+	z-index: 1; // 글자는 구체 위로
+	height: 400vh;
+	color: var(--white-color);
+
+	// 글 무대 : 화면에 고정 (래퍼 clip-path 로 about·푸터 영역에서만 보임)
+	.ab_sticky {
+		position: fixed;
+		top: 0;
+		left: 0;
+		display: flex;
+		width: 100%;
+		align-items: center;
+		height: 100vh;
+		height: 100svh;
+	}
+
+	// 5줄 마름모꼴 : 줄바꿈은 <br> 로만 (자동 줄바꿈되면 모양이 깨지므로 nowrap)
+	// 글자 크기 : 가장 긴 줄(17.3em, Pretendard 900 기준)이 이너 폭의 90% 를 차지하도록 화면 폭에 비례 → 최대 6.4rem
+	//   태블릿·모바일도 단계로 뚝 떨어지지 않고 화면 폭만큼 자연스럽게 줄어듦 (모바일은 이너 여백이 작아서 94%)
+	//   예) 1440px → 64px / 1024px → 48px / 768px → 38px / 375px → 18px
+	// 행간 : 글자 크기의 1.25배 (짝수 px)
+	.ab_text {
+		font-size: round(down, min(6.4rem, (100vw - $inner-tb * 2) * 0.9 / 17.3), 2px);
+		font-weight: 900;
+		line-height: round(down, 1.25em, 2px);
+		text-align: center;
+		white-space: nowrap;
+
+		@include mobile {
+			font-size: round(down, (100vw - $inner-mo * 2) * 0.94 / 17.3, 2px);
+		}
+
+		// 휴대폰 : 7줄 마름모꼴로 다시 줄바꿈(index.html), 2.4rem
+		//   가장 긴 줄(13.62em)이 375px 에서 딱 맞음 → 그보다 좁은 폰(360·320)에선 넘치지 않게 그만큼만 작아짐
+		@include phone {
+			font-size: min(2.4rem, round(down, (100vw - $inner-mo * 2) / 13.62, 2px));
+		}
+	}
+
+	// 화면별 줄바꿈 (index.html 주석 참고)
+	.ab_br_mo {
+		display: none;
+	}
+
+	@include phone {
+		.ab_br_pc {
+			display: none;
+		}
+
+		.ab_br_mo {
+			display: inline;
+		}
+	}
+
+	// 한 글자씩 나눈 span (JS) : 처음엔 흐리게, 스크롤하면 opacity 1 로 채워짐
+	.ab_char {
+		opacity: 0.16;
+	}
+}

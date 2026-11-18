@@ -1,0 +1,151 @@
+// =========================================
+// Header
+// =========================================
+// 좌우 여백은 공통 .inner (40 / 40 / 20px, style.scss), 위아래 20px
+// 화면 위에 고정 — 카드 위 호버·클릭은 막지 않도록 로고 · MENU 버튼만 클릭 받음
+.header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 4;
+	width: 100%;
+	padding: 2rem 0;
+	color: var(--white-color);
+	pointer-events: none;
+	mix-blend-mode: difference; // 흰 글자 + 색 반전 → 밝은 배경에선 검게, about(#000) 위에선 희게
+
+	.inner {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+}
+
+// 로고 색 : 밝은 배경(#f9f9f9) 위에서 #444 로 보이게
+// 헤더가 색 반전(difference)이라 실제 보이는 색 = 배경 - 글자색 → #f9f9f9 - #b5b5b5 = #444444
+// (about · 푸터의 검정 배경 위에선 밝은 회색 #b5b5b5 로 보임)
+.hd_logo,
+.hd_menu_btn {
+	font-size: 1.6rem;
+	font-weight: 100;
+	color: #b5b5b5;
+	pointer-events: auto;
+}
+
+// =========================================
+// Menu (이전 포트폴리오 메뉴와 같은 구성)
+// =========================================
+// 화면 전체를 흐린 유리판이 덮고, 가운데에 큰 영문 링크(Unbounded) — 기본은 흐리게, 마우스를 올리면 진하게
+// 헤더(z 4)보다 아래 · 카드 캔버스·about(z 1~3)보다 위 → 열려 있어도 로고 · CLOSE 버튼은 그대로 보임
+// 휴대폰(480px 이하)은 아래에서 올라오는 시트 (줄마다 구분선 + 오른쪽 화살표)
+$menu-ease: 0.75s;
+
+.gnb {
+	position: fixed;
+	inset: 0;
+	z-index: 3;
+	opacity: 0;
+	visibility: hidden;
+	background: rgba(249, 249, 249, 0.5);
+	-webkit-backdrop-filter: blur(2.4rem);
+	backdrop-filter: blur(2.4rem);
+	transition:
+		opacity $menu-ease,
+		visibility $menu-ease;
+
+	.is_menu & {
+		opacity: 1;
+		visibility: visible;
+	}
+
+	@media (max-width: 480px) {
+		inset: auto 0 -100% 0;
+		border-top: 1px solid rgba(0, 0, 0, 0.1);
+		border-radius: 2.4rem 2.4rem 0 0;
+		opacity: 1;
+		transition:
+			bottom $menu-ease,
+			visibility $menu-ease;
+
+		.is_menu & {
+			bottom: 0;
+		}
+	}
+}
+
+.gnb_list {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	width: max-content;
+	height: 100%;
+	margin: 0 auto;
+
+	a {
+		position: relative;
+		display: block;
+		font-family: "Unbounded", sans-serif;
+		font-size: 6.4rem;
+		font-weight: 700;
+		line-height: 9.6rem;
+		text-transform: uppercase;
+		color: rgba(0, 0, 0, 0.2);
+		transition: color $menu-ease;
+
+		@media (min-width: 481px) {
+			&:hover {
+				color: var(--txt01);
+			}
+		}
+
+		@media (max-width: 1400px) {
+			font-size: 5.6rem;
+			line-height: 8rem;
+		}
+
+		@media (max-width: 768px) {
+			font-size: 4rem;
+			line-height: 6.4rem;
+		}
+
+		// 휴대폰 : 시트 안 목록 (줄마다 구분선 + 오른쪽 꺾쇠 화살표)
+		@media (max-width: 480px) {
+			padding: 0 2rem;
+			font-family: inherit;
+			font-size: 1.4rem;
+			font-weight: 100;
+			line-height: 4.8rem;
+			color: var(--txt01);
+
+			&::before {
+				content: "";
+				position: absolute;
+				right: 2rem;
+				bottom: 0;
+				left: 2rem;
+				height: 1px;
+				background: rgba(0, 0, 0, 0.05);
+			}
+
+			&::after {
+				content: "";
+				position: absolute;
+				top: 50%;
+				right: 2.2rem;
+				width: 0.8rem;
+				height: 0.8rem;
+				border-top: 1px solid currentColor;
+				border-right: 1px solid currentColor;
+				opacity: 0.5;
+				translate: 0 -50%;
+				rotate: 45deg;
+			}
+		}
+	}
+
+	@media (max-width: 480px) {
+		width: 100%;
+		height: auto;
+		padding: 2.4rem 0;
+	}
+}
